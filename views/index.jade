@@ -2,4 +2,21 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  h3 If you are not Joris you are not supposed to be here! 
+  h3 🥷 well since you're here anyways take a look at my messages..
+
+
+  div#messages
+
+  script.
+    fetch('http://localhost:3000/api/v1/messages')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.data.messages);
+        data.data.messages.forEach(message => {
+          const p = document.createElement('p');
+          p.textContent = message.user + ": " + message.text;
+          document.getElementById('messages').appendChild(p);
+        });
+      });
+  
