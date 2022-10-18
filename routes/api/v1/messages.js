@@ -4,20 +4,23 @@ let router = express.Router();
 router.get('/', function(req, res, next) {
   res.json({ 
       "status": "success",
+      "message": "GETTING messages",
       "data": {
           "messages": [
               {
-                  "id": 1,
+                  "user": "John",
                   "text": "Hello World"
               },
               {
-                  "id": 2,
+                  "user": "Jane",
                   "text": "Hello World Again"
               }
           ]
       }
    });
 });
+
+
 
 
 module.exports = router;
