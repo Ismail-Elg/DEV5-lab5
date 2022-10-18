@@ -14,7 +14,21 @@ router.get('/', function(req, res, next) {
               {
                   "user": "Jane",
                   "text": "Hello World Again"
-              }
+              },              {
+                "user": "John",
+                "text": "Hello World"
+            },
+            {
+                "user": "Jane",
+                "text": "Hello World Again"
+            },              {
+              "user": "John",
+              "text": "Hello World"
+          },
+          {
+              "user": "Jane",
+              "text": "Hello World Again"
+          },
           ]
       }
    });
