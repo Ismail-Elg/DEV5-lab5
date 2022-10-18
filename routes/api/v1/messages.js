@@ -73,7 +73,12 @@ router.put('/:id', function(req, res, next) {
 
 });
 
-
+router.delete('/:id', function(req, res, next) {
+  res.json({
+    "status": "success",
+    "message": "DELETING message with id: " + req.params.id,
+  });
+});
 
 
 module.exports = router;
