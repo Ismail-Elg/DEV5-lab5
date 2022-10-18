@@ -20,6 +20,19 @@ router.get('/', function(req, res, next) {
    });
 });
 
+router.get('/:id', function(req, res, next) {
+  res.json({
+      "status": "success",
+      "message": "GETTING message with id: " + req.params.id,
+      "data": {
+          "message": {
+              "user": "John",
+              "text": "Hello World"
+          }
+      }
+  });
+});
+
 
 
 
