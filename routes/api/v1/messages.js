@@ -57,6 +57,22 @@ router.post('/', function(req, res, next) {
 
 });
 
+router.put('/:id', function(req, res, next) {
+  if(!req.body.user || !req.body.text){
+    res.json({
+      "status": "error",
+      "message": "UPDATING message failed",
+    });
+  }
+  else{
+  res.json({
+    "status": "success",
+    "message": "UPDATING message with id: " + req.params.id,
+  });
+}
+
+});
+
 
 
 
