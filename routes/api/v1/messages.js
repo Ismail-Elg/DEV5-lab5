@@ -34,6 +34,30 @@ router.get('/:id', function(req, res, next) {
 });
 
 
+router.post('/', function(req, res, next) {
+  if(!req.body.user || !req.body.text){
+    res.json({
+      "status": "error",
+      "message": "POSTING message failed",
+      "data": null
+    });
+  }
+  else{
+  res.json({
+    "status": "success",
+    "message": "POSTING message for user: " + req.body.user,
+    "data": {
+        "message": {
+            "user": req.body.user,
+            "text": req.body.text
+        }
+    }
+  });
+}
+
+});
+
+
 
 
 module.exports = router;
