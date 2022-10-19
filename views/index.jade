@@ -9,7 +9,7 @@ block content
   div#messages
 
   script.
-    fetch('http://localhost:3000/api/v1/messages')
+    fetch('https://lab5-yz9k.onrender.com/api/v1/messages')
       .then(response => response.json())
       .then(data => {
         console.log(data.data.messages);
