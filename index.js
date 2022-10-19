@@ -9,6 +9,10 @@ let messagesRouter = require('./routes/api/v1/messages');
 
 let cors = require('cors');
 
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/messageapp',
+  { useNewUrlParser: true, useUnifiedTopology: true });
+
 let app = express();
 
 // view engine setup
