@@ -20,9 +20,15 @@ router.get('/', function(req, res, next) {
  
 
 router.get('/:id', function(req, res, next) {
-  Message.findById(req.params.id, function(err, message) {
-    if (err) return console.error(err);
-    res.json(message);
+  res.json({
+      "status": "success",
+      "message": "GETTING message with id: " + req.params.id,
+      "data": {
+          "message": {
+              "user": "John",
+              "text": "Hello World"
+          }
+      }
   });
 });
 

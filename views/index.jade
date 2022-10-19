@@ -9,14 +9,16 @@ block content
   div#messages
 
   script.
-    fetch('https://lab5-yz9k.onrender.com/api/v1/messages')
+    fetch('http://localhost:3000/api/v1/messages')
       .then(response => response.json())
       .then(data => {
-        console.log(data.data.messages);
-        data.data.messages.forEach(message => {
+    
+        console.log(data);
+        data.forEach(message => {
           const p = document.createElement('p');
           p.textContent = message.user + ": " + message.text;
           document.getElementById('messages').appendChild(p);
         });
+        
       });
   
