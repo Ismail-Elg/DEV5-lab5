@@ -1,75 +1,55 @@
 let express = require('express');
 let router = express.Router();
+let mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const messageSchema = new Schema({
+  user: String,
+  text: String,
+  completed: Boolean
+  });
+
+const Message = mongoose.model('Message', messageSchema);
+
 
 router.get('/', function(req, res, next) {
-  res.json({ 
-      "status": "success",
-      "message": "GETTING messages",
-      "data": {
-          "messages": [
-              {
-                  "user": "John",
-                  "text": "Hello World"
-              },
-              {
-                  "user": "Jane",
-                  "text": "Hello World Again"
-              },              {
-                "user": "John",
-                "text": "Hello World"
-            },
-            {
-                "user": "Jane",
-                "text": "Hello World Again"
-            },              {
-              "user": "John",
-              "text": "Hello World"
-          },
-          {
-              "user": "Jane",
-              "text": "Hello World Again"
-          },
-          ]
-      }
-   });
+  Message.find(function(err, messages) {
+    if (err) return console.error(err);
+    res.json(messages);
+  });
 });
+ 
 
 router.get('/:id', function(req, res, next) {
-  res.json({
-      "status": "success",
-      "message": "GETTING message with id: " + req.params.id,
-      "data": {
-          "message": {
-              "user": "John",
-              "text": "Hello World"
-          }
-      }
+  Message.findById(req.params.id, function(err, message) {
+    if (err) return console.error(err);
+    res.json(message);
   });
 });
 
 
 router.post('/', function(req, res, next) {
-  if(!req.body.user || !req.body.text){
-    res.json({
-      "status": "error",
-      "message": "POSTING message failed",
-      "data": null
-    });
-  }
-  else{
-  res.json({
-    "status": "success",
-    "message": "POSTING message for user: " + req.body.user,
-    "data": {
-        "message": {
-            "user": req.body.user,
-            "text": req.body.text
-        }
+  let message = new Message({
+    user: req.body.user,
+    text: req.body.text,
+    completed: false
+  });
+  message.save((err, doc) => {
+    if (err) {
+      res.json({
+        status: "error",
+        message: "Error saving message",
+        data: null
+      });
+    } else {
+      res.json({
+        status: "success",
+        message: "Message saved",
+        data: doc
+      });
     }
   });
-}
-
 });
+
 
 router.put('/:id', function(req, res, next) {
   if(!req.body.user || !req.body.text){

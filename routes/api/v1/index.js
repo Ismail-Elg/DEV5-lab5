@@ -5,5 +5,4 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'My Node Api' });
 });
 
-
 module.exports = router;
