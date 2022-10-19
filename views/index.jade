@@ -51,14 +51,12 @@ block content
     fetch('https://lab5-yz9k.onrender.com/api/v1/messages')
       .then(response => response.json())
       .then(data => {
-    
-        console.log(data);
-        data.forEach(message => {
+        console.log(data.data);
+        data.data.messages.forEach(message => {
           const p = document.createElement('p');
           p.textContent = message.user + ": " + message.text;
           document.getElementById('messages').appendChild(p);
         });
-        
       });
 
     function refreshPage(){

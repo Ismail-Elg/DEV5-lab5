@@ -9,13 +9,9 @@ let messagesRouter = require('./routes/api/v1/messages');
 
 let cors = require('cors');
 
-//get url from config file
-let config = require('config');
-
 const mongoose = require('mongoose');
-mongoose.connect(config.get('Database.conn'),
+mongoose.connect('mongodb+srv://ismail:NjEggi3sraL3FYnV@cluster0.vixszlq.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true, useUnifiedTopology: true });
-
 let app = express();
 
 // view engine setup
