@@ -21,7 +21,7 @@ block content
       let user = document.getElementById('user').value;
       let text = document.getElementById('text').value;
       let data = {user: user, text: text};
-      fetch('https://lab5-yz9k.onrender.com/api/v1/messages', {
+      fetch('https://lab5-p379.onrender.com/api/v1/messages', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ block content
  
     }
 
-    fetch('https://lab5-yz9k.onrender.com/api/v1/messages')
+    fetch('https://lab5-p379.onrender.com/api/v1/messages')
       .then(response => response.json())
       .then(data => {
         console.log(data);
