@@ -9,8 +9,11 @@ let messagesRouter = require('./routes/api/v1/messages');
 
 let cors = require('cors');
 
+//get url from config file
+let config = require('config');
+
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/messageapp',
+mongoose.connect(config.get('Database.conn'),
   { useNewUrlParser: true, useUnifiedTopology: true });
 
 let app = express();

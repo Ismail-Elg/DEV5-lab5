@@ -48,7 +48,7 @@ router.post("/", function (req, res, next) {
     if (err) {
       res.json({
         status: "error",
-        message: "Error saving message",
+        message: "Error saving message, make sure you have a user and text",
       });
     } else {
       res.json({

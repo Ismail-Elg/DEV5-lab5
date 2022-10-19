@@ -3,13 +3,52 @@ extends layout
 block content
   h1= title
   h3 If you are not Joris you are not supposed to be here! 
-  h3 🥷 well since you're here anyways take a look at my messages..
+  h3 🥷 well since you're here anyways take a look at my messages or make your own..
 
+  span#errors
+
+  div#input
+    input(type='text' name='user' placeholder='user' id='user')
+    input(type='text' name='text' placeholder='message' id='text')
+    button(onclick='submitMessage()') submit
+  
 
   div#messages
 
   script.
-    fetch('http://localhost:3000/api/v1/messages')
+  
+    function submitMessage() {
+      let user = document.getElementById('user').value;
+      let text = document.getElementById('text').value;
+      let data = {user: user, text: text};
+      fetch('https://lab5-yz9k.onrender.com/api/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        if(data.status == 'success') {
+          document.getElementById('user').value = '';
+          document.getElementById('text').value = '';
+          document.getElementById('errors').innerHTML = 'Message sent!';
+          refreshPage();
+        } else {
+          document.getElementById('errors').innerHTML = data.message;
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        document.getElementById('errors').innerHTML = data.message;
+      });
+   
+ 
+    }
+
+    fetch('https://lab5-yz9k.onrender.com/api/v1/messages')
       .then(response => response.json())
       .then(data => {
     
@@ -21,4 +60,8 @@ block content
         });
         
       });
+
+    function refreshPage(){
+      window.location.reload();
+    }
   
